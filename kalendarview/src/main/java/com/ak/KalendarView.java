@@ -241,7 +241,7 @@ public class KalendarView extends LinearLayout{
     public void setGridCellClickEvents(){
         calendarGridView.setOnItemClickListener((parent, view, position, id) -> {
             pos=(int)view.getTag();
-            if(pos == pre) return;
+            if(pos == prev) return;
             LinearLayout llParent = view.findViewById(R.id.ll_parent);
             llParent.setBackground(selectedIndicator);
             TextView txt=view.findViewById(R.id.calendar_date_id);
