@@ -225,9 +225,23 @@ public class KalendarView extends LinearLayout{
                 mMonthChanger.onMonthChanged(cal.getTime());
         });
     }
+
+    public void setHighlightSelectedDay(Boolean b){
+        LinearLayout llParent = calendarGridView.getChildAt(pos).findViewById(R.id.ll_parent);
+        TextView txt = calendarGridView.getChildAt(pos).findViewById(R.id.calendar_date_id);
+        if(b){
+            llParent.setBackground(selectedIndicator);
+            txt.setTextColor(selectedDateColor);
+        }else{
+            llParent.setBackgroundColor(calendarBackgroundColor);
+            txt.setTextColor((int)(txt.getTag())==0?dateColor:nonMonthDateColor);
+        }
+    }
+    
     public void setGridCellClickEvents(){
         calendarGridView.setOnItemClickListener((parent, view, position, id) -> {
             pos=(int)view.getTag();
+            if(pos == pre) return;
             LinearLayout llParent = view.findViewById(R.id.ll_parent);
             llParent.setBackground(selectedIndicator);
             TextView txt=view.findViewById(R.id.calendar_date_id);
